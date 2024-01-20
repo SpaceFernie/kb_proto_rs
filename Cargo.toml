@@ -1,0 +1,32 @@
+[package]
+name = "kb_proto_rs"
+description = "Experimental firmware for a keyboard prototype."
+version = "0.1.0"
+edition = "2021"
+rust-version = "1.75"
+authors = ["David Fernie"]
+readme = "README.md"
+license-file = "LICENSE.txt"
+repository = "https://github.com/SpaceFernie/kb_proto_rs"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+cortex-m = "0.7.7"
+cortex-m-rt = "0.7.3"
+panic-halt = "0.2.0"
+
+[dependencies.stm32g0]
+features = ["stm32g0b1", "rt"]
+version = "0.15.1"
+
+# this lets you use `cargo fix`!
+[[bin]]
+name = "kb_proto_rs"
+test = false
+bench = false
+
+[profile.release]
+codegen-units = 1 # better optimizations
+debug = true      # symbols are nice and they don't increase the size on Flash
+lto = true        # better optimizations
